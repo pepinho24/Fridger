@@ -7,7 +7,22 @@ using System.Web.Http;
 
 namespace Fridger.WebApi.Controllers
 {
-    [Authorize]
+    public class RegisterForm
+    {
+        public RegisterForm(string username, string email, string password)
+        {
+            Username = username;
+            Email = email;
+            Password = password;
+        }
+
+        public string Username { get; set; }
+
+        public string Email { get; set; }
+
+        public string Password { get; set; }
+    }
+
     public class ValuesController : ApiController
     {
         // GET api/values
@@ -23,8 +38,9 @@ namespace Fridger.WebApi.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]string value)
+        public void Post([FromBody] RegisterForm value)
         {
+         
         }
 
         // PUT api/values/5
