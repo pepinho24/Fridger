@@ -14,8 +14,9 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="0.3*"/>
-            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
         <TextBlock Text="Welcome to The Login screen!"
                    TextWrapping="WrapWholeWords"
@@ -29,12 +30,12 @@
                    FontSize="24"
                    Text="Notification Block" />
         <Grid Name="panelAdd"
-              Grid.Row="3">
+              Grid.Row="2">
             <Grid.Resources>
                 <viewModels:LoginFormViewModel x:Key="newLoginForm"/>
             </Grid.Resources>
             <Grid.RowDefinitions>
-                <RowDefinition Height="7*" />
+                <RowDefinition Height="3*" />
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0"
@@ -61,5 +62,10 @@
                     CommandParameter="{StaticResource newLoginForm}"
                     Click="OnLoginButtonClick" />
         </Grid>
+        <Button Grid.Row="3"
+            Content="Go to home page!"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Click="OnGoToHomePageClick"/>
     </Grid>
 </Page>

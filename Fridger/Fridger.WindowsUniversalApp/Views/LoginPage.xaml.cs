@@ -36,20 +36,33 @@ namespace Fridger.WindowsUniversalApp.Views
             //var contentViewModel = new RegisterFormContentViewModel();
             //this.DataContext = new MainPageViewModel(contentViewModel);
         }
-        
+
+        private void OnGoToHomePageClick(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
+        }
+
         private async void OnLoginButtonClick(object sender, RoutedEventArgs e)
         {
+            // should use system.web http client
             var reg = (sender as Button).CommandParameter as LoginFormViewModel;
             this.NotificationTextBlock.Text = string.Empty;
-            var url = "http://localhost:57647/" + "token";
-
-            //TODO: data musd be passed as x-www-form-url-encoded
+            var url = "http://localhost:57647" + "/token";
+            
             var content = new StringContent("grant_type=password&username=" + reg.UserName + "&password=" + reg.Password, Encoding.UTF8, "application/x-www-form-urlencoded");
             var response = await this.httpClient.PostAsync(new Uri(url), content);
-            var result = await response.Content.ReadAsStringAsync();
-
-            this.NotificationTextBlock.Text = result;
-
+            this.NotificationTextBlock.Text = "Loading...";
+            var resultContent = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<TokenKeyValuePair>(resultContent);
+            //Newtonsoft.Json.Converters.KeyValuePairConverter()
+            //receive json object { "access_token":"TOKEN_STRING_HERE"}
+            this.NotificationTextBlock.Text = result.AccessToken;
         }
+    }
+
+    [JsonObject]
+    public class TokenKeyValuePair {
+        [JsonProperty("access_token")]
+        public string AccessToken { get; set; }
     }
 }

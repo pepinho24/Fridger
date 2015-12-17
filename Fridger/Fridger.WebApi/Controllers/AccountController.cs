@@ -328,7 +328,7 @@ namespace Fridger.WebApi.Controllers
             {
                 return BadRequest(ModelState);
             }
-            return Ok("Registration form is valid!");
+
             var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);

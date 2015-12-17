@@ -13,8 +13,9 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="4*"/>
+            <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
         <TextBlock Text="Welcome to The register screen!"
                    TextWrapping="WrapWholeWords"
@@ -26,14 +27,15 @@
                    VerticalAlignment="Center"
                    TextWrapping="Wrap"
                    FontSize="24"
-                   Text="Notification Block" />          
+                   Text="Notification Block" />
         <Grid Name="panelAdd"
-              Grid.Row="3">
+              Grid.Row="2">
             <Grid.Resources>
                 <viewModels:RegisterFormViewModel x:Key="newRegisterForm"/>
             </Grid.Resources>
             <Grid.RowDefinitions>
                 <RowDefinition Height="7*" />
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0"
@@ -70,5 +72,10 @@
                     CommandParameter="{StaticResource newRegisterForm}"
                     Click="PostButtonClick" />
         </Grid>
+        <Button Grid.Row="3"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Click="OnGoToHomePageClick"
+                Content="Go to home page!"/>
     </Grid>
 </Page>

@@ -37,12 +37,17 @@ namespace Fridger.WindowsUniversalApp.Views
             //this.DataContext = new MainPageViewModel(contentViewModel);
         }
 
+        private void OnGoToHomePageClick(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
+        }
 
         private async void PostButtonClick(object sender, RoutedEventArgs e)
-        {
+        { 
+            // should use system.web http client
             var reg = (sender as Button).CommandParameter;
             this.NotificationTextBlock.Text = string.Empty;
-            var url = "http://localhost:57647/" +"api/account/register";
+            var url = "http://localhost:57647" +"/api/account/register";
             var content = new StringContent(JsonConvert.SerializeObject(reg), Encoding.UTF8, "application/json");
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var response = await this.httpClient.PostAsync(new Uri(url), content);
