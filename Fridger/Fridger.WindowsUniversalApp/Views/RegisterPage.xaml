@@ -21,13 +21,14 @@
                    TextWrapping="WrapWholeWords"
                    HorizontalAlignment="Center"
                    FontSize="36"/>
-        <TextBlock x:Name="NotificationTextBlock" 
-                   Grid.Row="1"
+        <ScrollViewer Grid.Row="1">
+            <TextBlock x:Name="NotificationTextBlock"                   
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    TextWrapping="Wrap"
                    FontSize="24"
                    Text="Notification Block" />
+        </ScrollViewer>        
         <Grid Name="panelAdd"
               Grid.Row="2">
             <Grid.Resources>

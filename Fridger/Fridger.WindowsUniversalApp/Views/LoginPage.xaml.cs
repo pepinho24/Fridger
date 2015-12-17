@@ -46,12 +46,16 @@ namespace Fridger.WindowsUniversalApp.Views
         {
             // should use system.web http client
             var reg = (sender as Button).CommandParameter as LoginFormViewModel;
+            if (reg == null)
+            {
+                this.NotificationTextBlock.Text = "Invalid form!";
+            }
             this.NotificationTextBlock.Text = string.Empty;
             var url = "http://localhost:57647" + "/token";
             
             var content = new StringContent("grant_type=password&username=" + reg.UserName + "&password=" + reg.Password, Encoding.UTF8, "application/x-www-form-urlencoded");
-            var response = await this.httpClient.PostAsync(new Uri(url), content);
             this.NotificationTextBlock.Text = "Loading...";
+            var response = await this.httpClient.PostAsync(new Uri(url), content);           
             var resultContent = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<TokenKeyValuePair>(resultContent);
             //Newtonsoft.Json.Converters.KeyValuePairConverter()
